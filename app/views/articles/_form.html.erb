@@ -1,0 +1,29 @@
+<% if @article.errors.any? %>
+  <div>
+    <h3>
+      <%= pluralize(@article.errors.count, "error") %>
+      Can't add new article because:
+     </h3>
+     <ul>
+       <% @article.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+       <% end %>
+     </ul>
+  </div>
+  <% end %>
+
+<%= form_with model:@article, local: true do |form| %>
+<p>
+  <%= form.label :title %><br>
+  <%= form.text_field :title %>
+</p>
+
+<p>
+  <%= form.label :text %><br>
+  <%= form.text_area :text %>
+</p>
+
+<p>
+  <%= form.submit :submit %>
+</p>
+<% end %>
